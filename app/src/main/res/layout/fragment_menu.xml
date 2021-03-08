@@ -42,20 +42,20 @@
                     android:orientation="vertical"
                     tools:ignore="UseCompoundDrawables">
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="100sp"
+                        android:layout_height="50sp"
                         android:layout_gravity="center"
                         android:src="@mipmap/contrato_128"
                         android:contentDescription="@string/descripcion"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:text="@string/contratoCardViewText"
                         android:textAlignment="center"
-                        android:textColor="#ffcc00"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:textColor="#1d4c6a"
+                        android:textSize="16sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -77,20 +77,20 @@
                     android:orientation="vertical"
                     tools:ignore="UseCompoundDrawables">
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="100sp"
+                        android:layout_height="50sp"
                         android:layout_gravity="center"
                         android:src="@mipmap/gps_128"
                         android:contentDescription="@string/descripcion"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:text="@string/monitoreoCardViewText"
                         android:textAlignment="center"
-                        android:textColor="#ffcc00"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:textColor="#1d4c6a"
+                        android:textSize="16sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -112,20 +112,20 @@
                     android:orientation="vertical"
                     tools:ignore="UseCompoundDrawables">
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="100sp"
+                        android:layout_height="50sp"
                         android:layout_gravity="center"
                         android:src="@mipmap/publicacion_128"
                         android:contentDescription="@string/descripcion"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:text="@string/publicacionesCardViewText"
                         android:textAlignment="center"
-                        android:textColor="#ffcc00"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:textColor="#1d4c6a"
+                        android:textSize="16sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -147,20 +147,20 @@
                     android:orientation="vertical"
                     tools:ignore="UseCompoundDrawables">
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="100sp"
+                        android:layout_height="50sp"
                         android:layout_gravity="center"
                         android:src="@mipmap/sign_out_128"
                         android:contentDescription="@string/descripcion" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:text="@string/cerrar_sesion"
                         android:textAlignment="center"
-                        android:textColor="#ffcc00"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:layout_gravity="center"/>
+                        android:textColor="#1d4c6a"
+                        android:textSize="16sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

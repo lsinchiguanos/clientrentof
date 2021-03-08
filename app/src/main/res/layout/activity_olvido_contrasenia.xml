@@ -24,6 +24,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="84dp"
         android:layout_marginBottom="246dp"
-        android:text="@string/recuperarcontrasenia" />
+        android:background="@drawable/round_border"
+        android:text="Recuperar Contraseña" />
 
 </RelativeLayout>
