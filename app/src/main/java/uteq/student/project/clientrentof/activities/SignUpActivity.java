@@ -98,7 +98,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                     duenioModel.setCreated_at(FieldValue.serverTimestamp());
-                    db.collection("cliente").document(duenioModel.getCedula()).set(duenioModel);
+                    db.collection("cliente").document(task.getResult().getUser().getUid()).set(duenioModel);
                     Toast.makeText(SignUpActivity.this, "Registro existoso", Toast.LENGTH_SHORT).show();
                     intent = new Intent(SignUpActivity.this, LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
