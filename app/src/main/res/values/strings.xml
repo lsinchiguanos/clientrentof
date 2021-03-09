@@ -61,5 +61,7 @@
     <string name="nombres">nombres</string>
     <string name="cedula">cedula</string>
     <string name="telefono">telefono</string>
+    <string name="datos_contratos">Datos Contratos</string>
+    <string name="cargar">Cargar</string>
 
 </resources>
