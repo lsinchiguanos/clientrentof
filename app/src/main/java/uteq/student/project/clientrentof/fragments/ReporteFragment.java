@@ -218,7 +218,7 @@ public class ReporteFragment extends Fragment {
     @SuppressLint("RestrictedApi")
     public void createpdf() {
         String mydate = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
-        String pdfPath = "/" + "REPORTE   DE CONTRATO :" + mydate + "" + ".pdf";
+        String pdfPath = activity.getExternalFilesDir("").toString() + "/" + "REPORTE   DE CONTRATO :" + mydate + "" + ".pdf";
         File file1 = new File(pdfPath);
         Document document = new Document(PageSize.A4);
         try {
