@@ -57,5 +57,9 @@
     <string name="preference">uteq.student.project.clientrentof.PREFERENCE_FILE_KEY</string>
     <string name="escribir_correo_electronico">Escribir correo electronico</string>
     <string name="recuperarcontrasenia">RecuperarContrasenia</string>
+    <string name="apellidos">apellidos</string>
+    <string name="nombres">nombres</string>
+    <string name="cedula">cedula</string>
+    <string name="telefono">telefono</string>
 
 </resources>

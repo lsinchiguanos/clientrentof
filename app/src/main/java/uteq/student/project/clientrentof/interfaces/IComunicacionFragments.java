@@ -10,4 +10,5 @@ public interface IComunicacionFragments {
 
     void signUp();
 
+    void ReporteContrato();
 }

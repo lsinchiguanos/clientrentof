@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import uteq.student.project.clientrentof.activities.ReporteContrato;
 import uteq.student.project.clientrentof.fragments.MenuFragment;
 import uteq.student.project.clientrentof.fragments.PublicacionFragment;
 import uteq.student.project.clientrentof.interfaces.IComunicacionFragments;
@@ -57,12 +59,9 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
     public void monitoreo() {
 
     }
-
     @Override
     public void publicacion() {
-
     }
-
     @Override
     public void signUp() {
         FirebaseAuth.getInstance().signOut();
@@ -71,5 +70,13 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
         editor.clear();
         editor.apply();
         onBackPressed();
+    }
+    @Override
+    public void ReporteContrato() {
+        Intent intent = new Intent(this, ReporteContrato.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+       // intent.putExtra("id_duenio",id_duenio);
+        startActivity(intent);
     }
 }
