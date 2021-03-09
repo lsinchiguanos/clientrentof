@@ -72,7 +72,6 @@ public class LoginActivity extends AppCompatActivity {
                 intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.putExtra("email", task.getResult().getUser().getEmail());
                 intent.putExtra("id_duenio",task.getResult().getUser().getProviderId());
-                Toast.makeText(LoginActivity.this,task.getResult().getUser().getUid(),Toast.LENGTH_LONG).show();
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
@@ -85,11 +84,13 @@ public class LoginActivity extends AppCompatActivity {
     private void session(){
         preferences = getSharedPreferences(getString(R.string.preference), Context.MODE_PRIVATE);
         email = preferences.getString("email", null);
-
+        String id_duenio = "";
+        id_duenio = preferences.getString("id_duenio", null);
         if (email != null) {
             LoginActivity.this.setVisible(false);
             intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.putExtra("email", email);
+            intent.putExtra("id_duenio", id_duenio);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
