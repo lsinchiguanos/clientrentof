@@ -25,7 +25,7 @@ public class MenuFragment extends Fragment {
 
     View view;
     Activity activity;
-    CardView cardViewVehiculo, cardViewContrato, cardViewPublicaciones, cardViewMonitoreo, cardViewSignUp;
+    CardView  cardViewContrato, cardViewPublicaciones, cardViewMonitoreo, cardViewSignUp;
     IComunicacionFragments iComunicacionFragments;
     OnFragmentInteractionListener onFragmentInteractionListener;
     Bundle b = new Bundle();
