@@ -1,6 +1,7 @@
 package uteq.student.project.clientrentof.fragments;
 
 import android.app.Activity;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -215,6 +216,21 @@ public class PublicacionFragment extends Fragment {
             anioC = itemView.findViewById(R.id.anioC);
             costodiario = itemView.findViewById(R.id.costodiario);
             img2 = itemView.findViewById(R.id.img2);
+        }
+    }
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        if (context instanceof Activity) {
+            activity = (Activity) context;
+            iComunicacionFragments = (IComunicacionFragments) activity;
+        }
+        if (context instanceof MenuFragment.OnFragmentInteractionListener) {
+            onFragmentInteractionListener = (MenuFragment.OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
         }
     }
 }

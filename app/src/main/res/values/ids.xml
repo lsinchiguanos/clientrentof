@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="idValorDiario" type="id" />
+    <item name="idGeografico" type="id" />
+    <item name="idVehiculo" type="id" />
+    <item name="idTanqueFull" type="id" />
+    <item name="idSuperVelocidad" type="id" />
+    <item name="idLimiteChoques" type="id" />
+    <item name="idLimite" type="id" />
+    <item name="idFecha" type="id" />
+    <item name="BTNpdf" type="id" />
+    <item name="textView9" type="id" />
+    <item name="idTitulo" type="id" />
+    <item name="btnCargar" type="id" />
+    <item name="textView7" type="id" />
+    <item name="textView6" type="id" />
+</resources>
