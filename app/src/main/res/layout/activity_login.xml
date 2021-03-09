@@ -7,10 +7,12 @@
     tools:context=".activities.LoginActivity">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppinsbold"
         android:gravity="center"
+        android:paddingTop="25dp"
         android:text="@string/title_activity_login"
         android:textColor="@color/purple_500"
         android:textSize="30sp"
@@ -56,6 +58,7 @@
             android:fontFamily="@font/poppinsbold"
             android:inputType="text"
             android:textColor="#1D4C6A" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -117,9 +120,8 @@
         android:layout_width="104dp"
         android:layout_height="85dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@mipmap/car"
-        tools:layout_editor_absoluteY="68dp" />
+        tools:layout_editor_absoluteY="91dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
