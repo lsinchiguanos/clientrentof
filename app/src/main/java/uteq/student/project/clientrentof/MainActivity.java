@@ -1,24 +1,22 @@
 package uteq.student.project.clientrentof;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import uteq.student.project.clientrentof.activities.ReporteContrato;
 import uteq.student.project.clientrentof.fragments.MenuFragment;
 import uteq.student.project.clientrentof.fragments.PublicacionFragment;
-import uteq.student.project.clientrentof.fragments.reporte;
+import uteq.student.project.clientrentof.fragments.ReporteFragment;
 import uteq.student.project.clientrentof.interfaces.IComunicacionFragments;
 
-public class MainActivity extends AppCompatActivity implements reporte.OnFragmentInteractionListener, IComunicacionFragments, MenuFragment.OnFragmentInteractionListener, PublicacionFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements ReporteFragment.OnFragmentInteractionListener, IComunicacionFragments, MenuFragment.OnFragmentInteractionListener, PublicacionFragment.OnFragmentInteractionListener {
 
     private Fragment fragmentPublicacion,fragmentReporte;
     private FirebaseAuth firebaseAuth;
@@ -36,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements reporte.OnFragmen
         emailUser = getIntent().getExtras().getString("email");
         id_cliente = getIntent().getExtras().getString("id_cliente");
         fragmentPublicacion = new PublicacionFragment();
-        fragmentReporte = new reporte();
+        fragmentReporte = new ReporteFragment();
         preferences = getSharedPreferences(getString(R.string.preference), Context.MODE_PRIVATE);
         editor = preferences.edit();
         editor.putString("email", emailUser);

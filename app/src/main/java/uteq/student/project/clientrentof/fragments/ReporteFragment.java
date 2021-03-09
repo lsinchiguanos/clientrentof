@@ -1,6 +1,8 @@
 package uteq.student.project.clientrentof.fragments;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,21 +38,24 @@ import java.io.FileOutputStream;
 import java.util.Calendar;
 
 import uteq.student.project.clientrentof.R;
+import uteq.student.project.clientrentof.interfaces.IComunicacionFragments;
 
 import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link reporte#newInstance} factory method to
+ * Use the {@link ReporteFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class reporte extends Fragment {
+public class ReporteFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    TextView apellidos, nombres, cedula1, telefono1, email1, email2, fecha, limite, limiteChoque, SuperVelocidad, Tanque, ValorDiario, Geografico, placa;
+    IComunicacionFragments iComunicacionFragments;
+    MenuFragment.OnFragmentInteractionListener onFragmentInteractionListener;
+    Activity activity;
+
+    private Button btnCargar;
+    private Button btnPdf;
+    private TextView apellidos, nombres, cedula1, telefono1, email1, email2, fecha, limite, limiteChoque, SuperVelocidad, Tanque, ValorDiario, Geografico, placa;
     FirebaseFirestore mFirestore;
 
     //OBTENER UID DE INICIO DE SESIÓN
@@ -57,11 +63,16 @@ public class reporte extends Fragment {
     String x = currentFirebaseUser.getUid();
     String var;
 
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    public reporte() {
+    public ReporteFragment() {
         // Required empty public constructor
     }
 
@@ -71,16 +82,31 @@ public class reporte extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment reporte.
+     * @return A new instance of fragment ReporteFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static reporte newInstance(String param1, String param2) {
-        reporte fragment = new reporte();
+    public static ReporteFragment newInstance(String param1, String param2) {
+        ReporteFragment fragment = new ReporteFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity) {
+            activity = (Activity) context;
+            iComunicacionFragments = (IComunicacionFragments) activity;
+        }
+        if (context instanceof MenuFragment.OnFragmentInteractionListener) {
+            onFragmentInteractionListener = (MenuFragment.OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
     }
 
     @Override
@@ -96,52 +122,43 @@ public class reporte extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View c = inflater.inflate(R.layout.fragment_reporte, container, false);
-        //var = this.getIntent().getExtras().getString("id_duenio");
-        //INICIALIZAR VARIABLES
+        View view = inflater.inflate(R.layout.fragment_reporte2, container, false);
+        btnCargar = view.findViewById(R.id.btnCargarReporteAlmeida);
+        btnPdf = view.findViewById(R.id.BTNpdf);
         mFirestore = FirebaseFirestore.getInstance();
-        apellidos = c.findViewById(R.id.idApellidos);
-        nombres = c.findViewById(R.id.idNombres);
-        cedula1 = c.findViewById(R.id.idCedula);
-        telefono1 = c.findViewById(R.id.idTelefono);
-        email1 = c.findViewById(R.id.idEmail);
-        email2 = c.findViewById(R.id.idTitulo);
+        apellidos = view.findViewById(R.id.idApellidos);
+        nombres = view.findViewById(R.id.idNombres);
+        cedula1 = view.findViewById(R.id.idCedula);
+        telefono1 = view.findViewById(R.id.idTelefono);
+        email1 = view.findViewById(R.id.idEmail);
+        email2 = view.findViewById(R.id.idTitulo);
         //Datos Contratos
-        fecha = c.findViewById(R.id.idFecha);
-        limite = c.findViewById(R.id.idLimite);
-        limiteChoque = c.findViewById(R.id.idLimiteChoques);
-        SuperVelocidad = c.findViewById(R.id.idSuperVelocidad);
-        Tanque = c.findViewById(R.id.idTanqueFull);
-        ValorDiario = c.findViewById(R.id.idValorDiario);
-        Geografico = c.findViewById(R.id.idGeografico);
-        placa = c.findViewById(R.id.idVehiculo);
+        fecha = view.findViewById(R.id.idFecha);
+        limite = view.findViewById(R.id.idLimite);
+        limiteChoque = view.findViewById(R.id.idLimiteChoques);
+        SuperVelocidad = view.findViewById(R.id.idSuperVelocidad);
+        Tanque = view.findViewById(R.id.idTanqueFull);
+        ValorDiario = view.findViewById(R.id.idValorDiario);
+        Geografico = view.findViewById(R.id.idGeografico);
+        placa = view.findViewById(R.id.idVehiculo);
         obtenerDatosCliente();
-        //LLAMAR FUNCION
-        obtenerDatosCliente();
-        return c;
-    }
-    private void obtenerDatosCliente() {
-        mFirestore.collection("cliente").document(x).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        btnCargar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()) {
-                    String nombre = documentSnapshot.getString("nombres");
-                    String Apellido_materno = documentSnapshot.getString("apellido_materno");
-                    String Apellido_Paterno = documentSnapshot.getString("apellido_paterno");
-                    String cedula = documentSnapshot.getString("cedula");
-                    String telefono = documentSnapshot.getString("telefono");
-                    String email = documentSnapshot.getString("email");
-                    nombres.setText(nombre);
-                    apellidos.setText(Apellido_Paterno + " " + Apellido_materno);
-                    cedula1.setText(cedula);
-                    telefono1.setText(telefono);
-                    email1.setText(email);
-                }
+            public void onClick(View v) {
+                cargar();
             }
         });
+        btnPdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createpdf();
+            }
+        });
+        return view;
     }
 
-    public void Cargar(View v) {
+    @SuppressLint("RestrictedApi")
+    public void cargar() {
         String a = email2.getText().toString();
         mFirestore.collection("contratos")
                 .whereEqualTo("idCliente", x)
@@ -177,8 +194,29 @@ public class reporte extends Fragment {
                 });
     }
 
+    private void obtenerDatosCliente() {
+        mFirestore.collection("cliente").document(x).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    String nombre = documentSnapshot.getString("nombres");
+                    String Apellido_materno = documentSnapshot.getString("apellido_materno");
+                    String Apellido_Paterno = documentSnapshot.getString("apellido_paterno");
+                    String cedula = documentSnapshot.getString("cedula");
+                    String telefono = documentSnapshot.getString("telefono");
+                    String email = documentSnapshot.getString("email");
+                    nombres.setText(nombre);
+                    apellidos.setText(Apellido_Paterno + " " + Apellido_materno);
+                    cedula1.setText(cedula);
+                    telefono1.setText(telefono);
+                    email1.setText(email);
+                }
+            }
+        });
+    }
+
     @SuppressLint("RestrictedApi")
-    public void createpdf(View v) {
+    public void createpdf() {
         String mydate = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
         String pdfPath = "/" + "REPORTE   DE CONTRATO :" + mydate + "" + ".pdf";
         File file1 = new File(pdfPath);
@@ -196,7 +234,7 @@ public class reporte extends Fragment {
         //PdfDocument pdfDocument = new PdfDocument(writer);
         document.open();
         try {
-//DATOS PERSONALES
+            //DATOS PERSONALES
             String nombre = nombres.getText().toString();
             String apellido = apellidos.getText().toString();
             String cedula2 = cedula1.getText().toString();
