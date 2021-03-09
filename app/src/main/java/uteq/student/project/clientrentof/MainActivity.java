@@ -15,11 +15,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import uteq.student.project.clientrentof.activities.ReporteContrato;
 import uteq.student.project.clientrentof.fragments.MenuFragment;
 import uteq.student.project.clientrentof.fragments.PublicacionFragment;
+import uteq.student.project.clientrentof.fragments.reporte;
 import uteq.student.project.clientrentof.interfaces.IComunicacionFragments;
 
-public class MainActivity extends AppCompatActivity implements IComunicacionFragments, MenuFragment.OnFragmentInteractionListener, PublicacionFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements reporte.OnFragmentInteractionListener, IComunicacionFragments, MenuFragment.OnFragmentInteractionListener, PublicacionFragment.OnFragmentInteractionListener {
 
-    private Fragment fragmentPublicacion;
+    private Fragment fragmentPublicacion,fragmentReporte;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore db;
     private String emailUser,id_cliente;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
         emailUser = getIntent().getExtras().getString("email");
         id_cliente = getIntent().getExtras().getString("id_cliente");
         fragmentPublicacion = new PublicacionFragment();
+        fragmentReporte = new reporte();
         preferences = getSharedPreferences(getString(R.string.preference), Context.MODE_PRIVATE);
         editor = preferences.edit();
         editor.putString("email", emailUser);
@@ -73,10 +75,6 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
     }
     @Override
     public void ReporteContrato() {
-        Intent intent = new Intent(this, ReporteContrato.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-       // intent.putExtra("id_duenio",id_duenio);
-        startActivity(intent);
+        getSupportFragmentManager().beginTransaction().replace(R.id.contentFragment,fragmentReporte).commit();
     }
 }

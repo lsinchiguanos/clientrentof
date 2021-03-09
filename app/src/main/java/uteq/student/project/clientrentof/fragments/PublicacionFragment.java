@@ -107,13 +107,12 @@ public class PublicacionFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //
-               // iComunicacionFragments.addpublicacion(id_duenio);
+              iComunicacionFragments.ReporteContrato();
             }
         });
         loadPublicaciones();
         return  view;
     }
-
 
     void loadPublicaciones() {
         query = firebaseFirestore.collection("publicacion").whereEqualTo("estado", "VIGENTE");
